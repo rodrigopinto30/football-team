@@ -42,117 +42,121 @@ const DataTable : React.FC= () => {
   return (
     <div className='flex flex-col gap-6'>
       <div>
-        <h2> teams </h2>
+      <h3 className='text-white text-lg underline underline-offset-4'>Teams</h3>
       </div>
       <div className='flex flex-row gap-6'>
-        {teams.map((team)=>(
-          <div 
-            key={team.id}
-            className="bg-red-200 rounded-md"  
-          >
-            {editingTeamId === team.id ? (
-              <div>
-                <div>
-                  <span>Team:</span>
-                  <input 
-                    type="text"
-                    value={editedTeamName}
-                    onChange={(e)=>setEditedTeamName(e.target.value)}
-                    />
-                  </div>
-                  <fieldset className='flex flex-col'>
-                    <legend>Does it havea stadium?</legend>
-                    <label 
-                      htmlFor="stadium-yes"
-                    >
-                      <input 
-                        id="stadium-yes" 
-                        type="radio" 
-                        name="stadium" 
-                        value="yes"
-                        onChange={()=>setStadium("yes")}
-                        className="inline" 
-                        // checked={team.stadium == 'yes' }
-                      /> 
-                        Yes
-                    </label>
-                    <label 
-                      htmlFor="stadium-no"
-                    >
-                      <input 
-                        id="stadium-no" 
-                        type="radio" 
-                        name="stadium"
-                        value="no" 
-                        onChange={()=>setStadium("no")}
-                        className="inline" 
-                        // checked={team.stadium == 'no'}
+        {teams.length == 0 ? 
+          <div>
+            <h4 className='text-white text-md underline underline-offset-4'>There are not teams</h4>
+          </div> 
+        : 
+          teams.map((team)=>(
+            <div 
+              key={team.id}
+              className="bg-red-200 rounded-md p-4"  
+            >
+              {editingTeamId === team.id ? (
+                <div className="flex flex-col gap-2">
+                  <div className='w-full flex flex-col'>
+                    <span>Team:</span>
+                    <input 
+                      type="text"
+                      value={editedTeamName}
+                      onChange={(e)=>setEditedTeamName(e.target.value)}
                       />
-                        No
-                      </label>
-                  </fieldset>
-                  
-                  <fieldset>
-                    <span>Entrenador:</span>
-                    <span>{team.dt?.name}</span>
-                  </fieldset>
-
-                  <fieldset>
-                    <span>Juagadores:</span>
-                    <div >
-                      {team.players?.map((player) =>(
-                        <span key={player.id}>{player.name}
-                          <input type="checkbox"/>
-                        </span>
-                      ))}
                     </div>
-                </fieldset>
-                <button  onClick={()=>handleEditCancel()}>Cancel</button>
-                <button onClick={()=>handleEditSave(team.id)}>Guardar</button>
-              </div>
-              ):(
-              <div>
-                <div>
-                  <span>Team:</span>
-                  <span>{team.name}</span>
-                </div>
-                <div>
-                  <span>Stadium:</span>
-                  <span>{team.stadium}</span>
-                </div>
-                <div>
-                  <span>Entrenador:</span>
-                  <span>{team.dt?.name}</span>
-                </div>
-                <fieldset>
-                    <span>Juagadores:</span>
-                    <ul>
-                      {team.players?.map((juagador)=>(
-                        <li>
-                          <span>Nombre: {juagador.numbers}</span>
-                          <span>Posicion: {juagador.position}</span>
-                        </li>
-                      ))}
-                    </ul>
-                </fieldset>
-                <div className='flex flex-row'>
-                  <button 
-                    className='text-white border-2 bg-blue-400 border-blue-400 rounded-md p-1 hover:bg-blue-500 hover:border-blue-500 hover:text-white' 
-                    onClick={()=>handleEditStart(team.id, team.name)}
-                  >Editar
-                  </button>
-                  <button 
-                    className='text-white border-2 bg-red-400 border-red-400 rounded-md p-1 hover:bg-red-500 hover:border-red-500 hover:text-white' 
-                    onClick={()=>handleDeleteTeam(team.id)}
-                    >Eliminar
-                  </button>   
-                </div>
-              </div>
-            )}
+                    <fieldset className='flex flex-col'>
+                      <legend>Does it havea stadium?</legend>
+                      <label 
+                        htmlFor="stadium-yes"
+                      >
+                        <input 
+                          id="stadium-yes" 
+                          type="radio" 
+                          name="stadium" 
+                          value="yes"
+                          onChange={()=>setStadium("yes")}
+                          className="inline" 
+                          // checked={team.stadium == 'yes' }
+                        /> 
+                          Yes
+                      </label>
+                      <label 
+                        htmlFor="stadium-no"
+                      >
+                        <input 
+                          id="stadium-no" 
+                          type="radio" 
+                          name="stadium"
+                          value="no" 
+                          onChange={()=>setStadium("no")}
+                          className="inline" 
+                          // checked={team.stadium == 'no'}
+                        />
+                          No
+                        </label>
+                    </fieldset>
+                    
+                    <fieldset>
+                      <span>Entrenador:</span>
+                      <span>{team.dt?.name}</span>
+                    </fieldset>
 
-          
-          </div>
-        ))}
+                    <fieldset>
+                      <span>Juagadores:</span>
+                      <div >
+                        {team.players?.map((player) =>(
+                          <span key={player.id}>{player.name}
+                            <input type="checkbox"/>
+                          </span>
+                        ))}
+                      </div>
+                  </fieldset>
+                  <button  onClick={()=>handleEditCancel()}>Cancel</button>
+                  <button onClick={()=>handleEditSave(team.id)}>Guardar</button>
+                </div>
+                ):(
+                <div className='flex flex-col gap-2'>
+                  <div className='w-full flex flex-col'>
+                    <span>Team:</span>
+                    <span>{team.name}</span>
+                  </div>
+                  <div className='w-full flex flex-col'>
+                    <span>Stadium:</span>
+                    <span>{team.stadium}</span>
+                  </div>
+                  <div className='w-full flex flex-col'>
+                    <span>DT:</span>
+                    <span>{team.dt?.name}</span>
+                  </div>
+                  <fieldset className='w-full flex flex-col'>
+                      <span>Players:</span>
+                      <ul>
+                        {team.players?.map((juagador)=>(
+                          <li>
+                            <span>Name: {juagador.numbers}</span>
+                            <span>Position: {juagador.position}</span>
+                          </li>
+                        ))}
+                      </ul>
+                  </fieldset>
+                  <div className='w-full flex flex-row gap-2 mt-8'>
+                    <button 
+                      className='text-white border-2 bg-blue-400 border-blue-400 rounded-md p-1 hover:bg-blue-500 hover:border-blue-500 hover:text-white' 
+                      onClick={()=>handleEditStart(team.id, team.name)}
+                    >Edit
+                    </button>
+                    <button 
+                      className='text-white border-2 bg-red-400 border-red-400 rounded-md p-1 hover:bg-red-500 hover:border-red-500 hover:text-white' 
+                      onClick={()=>handleDeleteTeam(team.id)}
+                      >Delete
+                    </button>   
+                  </div>
+                </div>
+              )}
+            </div>
+          ))
+        }
       </div>
     </div>
   )
