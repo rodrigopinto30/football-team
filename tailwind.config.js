@@ -5,6 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      'mont' : ["Montserrat"]
+    },
     extend: {
       backgroundImage: {
         'background-main': "url(asset/football-image.jpg)"

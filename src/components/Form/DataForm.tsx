@@ -1,6 +1,7 @@
 import React, { useState, Dispatch, SetStateAction } from 'react'
 import FootballSevice from '../../services';
 import { TeamTypes } from '../../types';
+import Input from './Input';
 
 
 interface Props {
@@ -26,37 +27,38 @@ const DataForm:React.FC<Props> = ({setTeams}) => {
     <div className='flex flex-col gap-3 p-4 bg-white bg-opacity-10 rounded-md backdrop-blur-md w-[60%]'>
       
       <fieldset className='flex flex-col'>
-        <legend className='text-white'>Name</legend>
-        <input
-          type="text"
+        <legend className='font-mont font-thin text-gray-100'>Name</legend>
+        <Input 
+          type='text'
           placeholder='Add team name'
-          className='p-1 rounded-md bg-gray-300 outline-none focus:bg-white'
+          clases='p-1 rounded-md font-mont font-medium bg-gray-300 outline-none focus:bg-white'
           value={newTeamName}
-          onChange={(e)=>setNewTeamName(e.target.value)}
-          autoFocus={true}
-          />
+          change={(e)=>setNewTeamName(e.target.value)}
+          focus={true}
+          checked={false} 
+        />
       </fieldset>
 
         <fieldset className='flex flex-col'>
-          <legend className='text-white'>Does it have a stadium?</legend>
+          <legend className='font-mont font-thin text-gray-100'>Does it have a stadium?</legend>
           <label 
             htmlFor="stadium-yes"
-            className='flex flex-row gap-1 text-white'
+            className='flex flex-row gap-1 font-mont font-medium text-white'
           >
-            <input 
-              id="stadium-yes" 
-              type="radio" 
-              name="stadium"
-              value="yes"
-              onChange={()=>setNewTeamStadium("yes")}
-              className="inline" 
-              checked
-            /> 
+            <Input 
+              id="stadium-yes"
+              type="radio"
+              name="staium"
+              value='yes'
+              change={()=>setNewTeamStadium("yes")}
+              clases="inline"
+              checked={true}
+            />
               Yes
           </label>
           <label 
             htmlFor="stadium-no"
-            className='flex flex-row gap-1 text-white'
+            className='flex flex-row gap-1 font-mont font-medium text-white'
           >
             <input 
               id="stadium-no" 
@@ -72,19 +74,19 @@ const DataForm:React.FC<Props> = ({setTeams}) => {
           
         
         <div className='flex flex-col'>
-          <span className='text-white'>Select DT:</span>
+          <span className='font-mont font-thin text-gray-100'>Select DT:</span>
           <select 
-            className='p-1 rounded-md bg-gray-300 outline-none focus:bg-white'
+            className='p-1 rounded-md bg-gray-300 font-mont font-medium outline-none focus:bg-white'
             >
-            <option selected>None</option>
-            <option>Juan</option>
-            <option>Pedro</option>
+            <option selected className='font-mont font-medium'>None</option>
+            <option className='font-mont font-medium'>Juan</option>
+            <option className='font-mont font-medium'>Pedro</option>
           </select>
         </div>
 
-    <div className='w-full'>
+    <div className='w-full mt-8'>
       <button
-        className='text-white p-1 bg-green-700 rounded-md hover:bg-green-500'
+        className='w-[10%] p-1 font-mont font-medium text-white bg-green-500 rounded-md hover:bg-green-600'
           onClick={handleTeam}
         >
           Add Team
