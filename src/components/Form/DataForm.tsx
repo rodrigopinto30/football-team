@@ -1,6 +1,7 @@
 import React, { useState, Dispatch, SetStateAction } from 'react'
 import FootballSevice from '../../services';
 import { TeamTypes } from '../../types';
+import Button from './Button';
 import Input from './Input';
 
 
@@ -85,13 +86,12 @@ const DataForm:React.FC<Props> = ({setTeams}) => {
         </div>
 
     <div className='w-full mt-8'>
-      <button
-        className='w-[10%] p-1 font-mont font-medium text-white bg-green-500 rounded-md hover:bg-green-600'
-          onClick={handleTeam}
-        >
-          Add Team
-        </button>
-    </div>
+      <Button
+        title='Add team'
+        clases='w-[10%] p-1 font-mont font-medium text-white bg-green-500 rounded-md hover:bg-green-600'
+        onclick={handleTeam}
+      />
+      </div>
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import React, { useState, Dispatch, SetStateAction} from 'react'
 import FootballSevice from '../../services';
 import { PlayerTypes } from '../../types'
+import Button from './Button';
+import Input from './Input';
 
 interface Props {
   setPlayers: Dispatch<SetStateAction<PlayerTypes[]>>;
@@ -29,40 +31,40 @@ const DataFormPlayer:React.FC<Props> = ({setPlayers}) => {
     <div className="flex flex-col gap-3 p-4 bg-white bg-opacity-10 rounded-md backdrop-blur-md w-[60%]">
       
       <fieldset className="flex flex-col">
-        <legend className='text-white'>Name</legend>
-        <input 
-          type="text"
-          className='p-1 rounded-md bg-gray-300 outline-none focus:bg-white'
-          placeholder='Add player name'
-          value={newPlayerName}  
-          onChange={(e)=>setNewPlayerName(e.target.value)}
-          autoFocus={true}
-        />
+        <legend className='font-mont font-thin text-gray-100'>Name</legend>
+          <Input 
+            type="text"
+            clases='p-1 rounded-md bg-gray-300 outline-none focus:bg-white'
+            placeholder='Add player name'
+            value={newPlayerName}  
+            change={(e)=>setNewPlayerName(e.target.value)}
+            focus={true}
+          />
       </fieldset>
 
       <fieldset className="flex flex-col">
-        <legend className='text-white'>Last name </legend>
-        <input 
-          type="text"
-          className='p-1 rounded-md bg-gray-300 outline-none focus:bg-white'
-          placeholder='Add player last name'
-          value={newPlayerLastname}  
-          onChange={(e)=>setNewPlayerLastname(e.target.value)}
-          autoFocus={true}
-        />
+        <legend className='font-mont font-thin text-gray-100'>Last name</legend>
+          <Input 
+            type="text"
+            clases='p-1 rounded-md bg-gray-300 outline-none focus:bg-white'
+            placeholder='Add player last name'
+            value={newPlayerLastname}  
+            change={(e)=>setNewPlayerLastname(e.target.value)}
+            focus={true}
+          />
       </fieldset>
 
       <fieldset className="flex flex-col">
-        <legend className='text-white'>Number</legend>
-        <input 
+      <legend className='font-mont font-thin text-gray-100'>Number</legend>
+        <Input 
           type="number"
-          className='p-1 rounded-md bg-gray-300 outline-none focus:bg-white'
+          clases='p-1 rounded-md bg-gray-300 outline-none focus:bg-white'
           min={1}
           max={50}
           placeholder='Add player number'
           value={newPlayerNumber}  
-          onChange={(e)=>setNewPlayerNumber(parseInt(e.target.value))}
-          autoFocus={true}
+          change={(e)=>setNewPlayerNumber(parseInt(e.target.value))}
+          focus={true}
         />
       </fieldset>
 
@@ -79,13 +81,12 @@ const DataFormPlayer:React.FC<Props> = ({setPlayers}) => {
         </select>
       </div>
 
-      <div className='w-full'>
-      <button
-        className='text-white p-1 bg-green-700 rounded-md hover:bg-green-500'
-          onClick={handlePlayer}
-        >
-          Add Team
-        </button>
+      <div className='w-full mt-8'>
+        <Button
+          title='Add team'
+          clases='w-[10%] p-1 font-mont font-medium text-white bg-green-500 rounded-md hover:bg-green-600'
+          onclick={handlePlayer}
+        />
     </div>
       
     </div>

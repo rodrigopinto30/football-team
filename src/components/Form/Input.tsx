@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler } from 'react'
 
 interface Props {
-    value: string;
+    value: string | number;
     placeholder?: string;
     type: string;
     clases: string;
@@ -10,9 +10,11 @@ interface Props {
     checked?: boolean;
     change?: ChangeEventHandler<HTMLInputElement> | undefined;
     focus?: boolean;
+    min?: number;
+    max?:number;
 }
 
-const Input : React.FC<Props> = ({value, placeholder, type, clases, id, name, checked, change,focus}) => {
+const Input : React.FC<Props> = ({value, placeholder, type, clases, id, name, checked, change,focus, min, max}) => {
   return (
     <input 
         value={value}
@@ -24,6 +26,8 @@ const Input : React.FC<Props> = ({value, placeholder, type, clases, id, name, ch
         checked={checked}
         autoFocus={focus}
         onChange={change}
+        min={min}
+        max={max}
     />
   )
 }
