@@ -2,6 +2,7 @@ import { DTTypes, PlayerTypes, TeamTypes } from "../types";
 
 const LOCAL_STORAGE_TEAM_KEY = 'team';
 const LOCAL_STORAGE_PLAYER_KEY = 'player';
+const LOCAL_STORAGE_DT_KEY = 'DT';
 
 const FootballSevice ={
     
@@ -78,6 +79,42 @@ const FootballSevice ={
         const players = FootballSevice.getPlayer();
         const updatePlayers = players.filter((player) => (player.id !== id));
         localStorage.setItem(LOCAL_STORAGE_PLAYER_KEY, JSON.stringify(updatePlayers));
+    },
+
+    // DTs
+    // Get all DT's
+    getDts:():DTTypes[]=>{
+        const dtStr = localStorage.getItem(LOCAL_STORAGE_DT_KEY);
+        return dtStr ? JSON.parse(dtStr) : [];
+    },
+
+    // Adding a DT
+    addDt:(name:string, lastName:string,  formation:string,team?: TeamTypes): DTTypes=>{
+        const dts = FootballSevice.getDts();
+        const newDt : DTTypes ={
+            id: dts.length +1,
+            name,
+            lastName,
+            team,
+            formation
+        }        
+        const updateDts = [...dts, newDt];
+        localStorage.setItem(LOCAL_STORAGE_DT_KEY, JSON.stringify(updateDts));
+        return newDt;
+    },
+
+    // Updating the DT
+    updateDt:(DT: DTTypes):DTTypes=>{
+        const dts = FootballSevice.getDts();
+        const updateDt = dts.map((dt)=>(dt.id === DT.id) ? DT : dt);
+        localStorage.setItem(LOCAL_STORAGE_DT_KEY, JSON.stringify(updateDt));
+        return DT;
+    },
+
+    deleteDt:(id:number)=>{
+        const dts = FootballSevice.getDts();
+        const updateDts = dts.filter((dt) => (dt.id !== id));
+        localStorage.setItem(LOCAL_STORAGE_DT_KEY, JSON.stringify(updateDts));
     }
 }
 

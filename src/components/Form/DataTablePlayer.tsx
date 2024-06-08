@@ -142,28 +142,29 @@ const DataTablePlayer = () => {
                     </button>
                   </fieldset>
                 </div>
-              ) : (
-                <div>
-                  <fieldset>
-                    <label>Player:</label>
-                    <span>{player.name}</span>
+              ) : ( 
+                <div className="flex flex-col gap-2">
+                  <fieldset className="w-full flex flex-col">
+                    <label className="font-mont font-thin text-gray-100">Player:</label>
+                    <span className="font-mont font-medium text-white">
+                      {player.name}</span>
                   </fieldset>
-                  <fieldset>
-                    <label>Last name:</label>
-                    <span>{player.lastName}</span>
+                  <fieldset className="w-full flex flex-col">
+                    <label className="font-mont text-gray-400">Last name:</label>
+                    <span className="text-white">{player.lastName}</span>
                   </fieldset>
-                  <fieldset>
-                    <label>Number:</label>
-                    <span>{player.numbers}</span>
+                  <fieldset className="w-full flex flex-col">
+                    <label className="font-mont text-gray-400">Number:</label>
+                    <span className="text-white">{player.numbers}</span>
                   </fieldset>
-                  <fieldset>
-                    <label>Postion:</label>
-                    <span>{player.position}</span>
+                  <fieldset className="w-full flex flex-col">
+                    <label className="font-mont text-gray-400">Postion:</label>
+                    <span className="text-white">{player.position}</span>
                   </fieldset>
 
-                  <div className="flex flex-row">
+                  <div className="w-full flex flex-row gap-2 mt-8">
                     <button
-                      className=""
+                      className="w-full font-mont font-medium text-white border-2 bg-blue-400 border-blue-400 rounded-md p-1 hover:bg-blue-500 hover:border-blue-500 hover:text-white"
                       onClick={() =>
                         handleEditStart(
                           player.id,
@@ -174,14 +175,14 @@ const DataTablePlayer = () => {
                         )
                       }
                     >
-                      Editar
+                      Edit
                     </button>
 
                     <button
-                      className=""
+                      className="w-full font-mont font-medium text-white border-2 bg-red-400 border-red-400 rounded-md p-1 hover:bg-red-500 hover:border-red-500 hover:text-white"
                       onClick={() => handleDeletePlayer(player.id)}
                     >
-                      Elimianr
+                      Delete
                     </button>
                   </div>
                 </div>

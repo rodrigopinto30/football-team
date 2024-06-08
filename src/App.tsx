@@ -1,3 +1,4 @@
+import DT from "./components/DT"
 import Header from "./components/Header"
 import Player from "./components/Player"
 import Team from "./components/Team"
@@ -17,6 +18,9 @@ function App() {
         <Player/>
       </section>
       
+      <section id="dts" className="mt-20">
+        <DT />
+      </section>
       <footer>
         footer
       </footer>
