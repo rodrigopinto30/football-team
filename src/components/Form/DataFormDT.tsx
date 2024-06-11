@@ -14,6 +14,7 @@ const DataFormDT : React.FC<Props> = ({setDTs}) => {
   const [newDtLastname, setNewDtLastname] = useState<string>("");
   const [newDtTeam, setNewDtTeam] = useState<TeamTypes>();
   const [newDtFormation, setNewDtFormation] = useState<string>("");
+  const [changed, setChanged] = useState<boolean>(false);
 
   const handleDt =()=>{
     if(newDtName.trim() !== ""){
@@ -22,11 +23,18 @@ const DataFormDT : React.FC<Props> = ({setDTs}) => {
       setNewDtName("");
       setNewDtLastname("");
       setNewDtFormation("");
-      console.log(newDt)
+      setChanged(true);
+
     }else{
       alert("Debes ingresar los datos correctamente.");
     }
   }
+
+  React.useEffect(()=>{
+    if(changed){
+      window.location.reload();
+      }
+  },[changed]);
 
   return (
     <div className="flex flex-col gap-3 p-4 bg-white bg-opacity-10 rounded-md backdrop-blur-md w-[60%]">
@@ -56,7 +64,8 @@ const DataFormDT : React.FC<Props> = ({setDTs}) => {
           />
       </fieldset>
 
-      <fieldset className="flex flex-col">
+      <div className='flex flex-row gap-5'>
+      <fieldset className="flex flex-col w-full">
         <legend className='font-mont font-thin text-gray-100'
         >Formation</legend>
           <Input 
@@ -69,8 +78,8 @@ const DataFormDT : React.FC<Props> = ({setDTs}) => {
           />
       </fieldset>
 
-      <div className="flex flex-col">
-        <span className='text-white'>Club</span>
+      <fieldset className="flex flex-col w-full">
+        <span className='text-white'>Team</span>
         <select 
           className='p-1 rounded-md bg-gray-300 outline-none focus:bg-white'
           // onChange={(e)=>setNewDTPosition(e.target.value)}
@@ -80,6 +89,7 @@ const DataFormDT : React.FC<Props> = ({setDTs}) => {
           <option>Real Madrid</option>
           <option>Flamengo</option>
         </select>
+      </fieldset>
       </div>
 
       <div className='w-full mt-8'>

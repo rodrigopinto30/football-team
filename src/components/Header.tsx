@@ -7,10 +7,9 @@ const Header = () => {
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div className="hidden sm:ml-6 sm:block">
                         <div className="flex space-x-4">
-                            <a href="#teams" className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Team</a>
-                            <a href="#players" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Players</a>
-                            <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">DT's</a>
-                            <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a>
+                            <a href="#teams" className="font-mont font-thin bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Team</a>
+                            <a href="#players" className="font-mont font-thin text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Players</a>
+                            <a href="#dts" className="font-mont font-thin text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">DT's</a>
                         </div>
                     </div>
                 </div>
@@ -19,10 +18,9 @@ const Header = () => {
 
             <div className="sm:hidden" id="mobile-menu">
                 <div className="space-y-1 px-2 pb-3 pt-2">
-                <a href="#" className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Team</a>
-                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Players</a>
-                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">DT's</a>
-                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
+                <a href="#" className="font-mont font-thin bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Team</a>
+                <a href="#" className="font-mont font-thin text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Players</a>
+                <a href="#" className="font-mont font-thin text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">DT's</a>
                 </div>
             </div>
         </nav>

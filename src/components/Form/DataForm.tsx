@@ -13,16 +13,24 @@ const DataForm:React.FC<Props> = ({setTeams}) => {
 
   const[newTeamName, setNewTeamName] = useState<string>("");
   const[newTeamStadium, setNewTeamStadium] = useState<string>("yes");
+  const[changed, setChanged] = useState<boolean>(false);
 
   const handleTeam =()=>{
     if(newTeamName.trim() !== ""){
       const newTeam = FootballSevice.addTeam(newTeamName, newTeamStadium);
       setTeams((prevTeam)=>[...prevTeam, newTeam]);
       setNewTeamName("");
+      setChanged(true);
     }else{
       alert("Debes ingresar el nombre de un equipo")
     }
   }
+
+  React.useEffect(()=>{
+    if(changed){
+      window.location.reload();
+      }
+  },[changed]);
 
   return (
     <div className='flex flex-col gap-3 p-4 bg-white bg-opacity-10 rounded-md backdrop-blur-md w-[60%]'>
@@ -39,8 +47,8 @@ const DataForm:React.FC<Props> = ({setTeams}) => {
           checked={false} 
         />
       </fieldset>
-
-        <fieldset className='flex flex-col'>
+        <div className='flex flex-row gap-5'>
+        <fieldset className='flex flex-col w-full'>
           <legend className='font-mont font-thin text-gray-100'>Does it have a stadium?</legend>
           <label 
             htmlFor="stadium-yes"
@@ -74,7 +82,7 @@ const DataForm:React.FC<Props> = ({setTeams}) => {
         </fieldset>
           
         
-        <div className='flex flex-col'>
+        <fieldset className='flex flex-col w-full'>
           <span className='font-mont font-thin text-gray-100'>Select DT:</span>
           <select 
             className='p-1 rounded-md bg-gray-300 font-mont font-medium outline-none focus:bg-white'
@@ -83,8 +91,8 @@ const DataForm:React.FC<Props> = ({setTeams}) => {
             <option className='font-mont font-medium'>Juan</option>
             <option className='font-mont font-medium'>Pedro</option>
           </select>
-        </div>
-
+        </fieldset>
+      </div>
     <div className='w-full mt-8'>
       <Button
         title='Add team'
