@@ -2,6 +2,7 @@ import React from "react";
 import FootballSevice from "../../services";
 import { TeamTypes, DTTypes, PlayerTypes } from "../../types";
 import Title from "../Title";
+import Label from "./Label";
 
 const DataTable: React.FC = () => {
   const [teams, setTeams] = React.useState<TeamTypes[]>(
@@ -62,21 +63,19 @@ const DataTable: React.FC = () => {
             >
               {editingTeamId === team.id ? (
                 <div className="flex flex-col gap-2">
-                  <fieldset className="w-full flex flex-col">
-                    <label className="font-mont font-thin text-gray-100">
-                      Team
-                    </label>
+                  <div className="w-full flex flex-col">
+                    <Label titulo="Team"/>
                     <input
                       className="p-1 rounded-md font-mont font-medium bg-gray-300 outline-none focus:bg-white"
                       type="text"
                       value={editedTeamName}
                       onChange={(e) => setEditedTeamName(e.target.value)}
                     />
-                  </fieldset>
-                  <fieldset className="flex flex-col">
-                    <legend className="font-mont font-thin text-gray-100">
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="font-mont font-thin text-gray-100">
                       Does it havea stadium?
-                    </legend>
+                    </label>
                     <label
                       htmlFor="stadium-yes"
                       className="font-mont font-medium text-white"
@@ -105,21 +104,17 @@ const DataTable: React.FC = () => {
                       />
                       No
                     </label>
-                  </fieldset>
+                  </div>
 
-                  <fieldset>
-                    <span className="font-mont font-thin text-gray-100">
-                      DT
-                    </span>
+                  <div>
+                    <Label titulo="DT"/>
                     <span className="font-mont font-medium text-white">
                       {team.dt?.name}
                     </span>
-                  </fieldset>
+                  </div>
 
-                  <fieldset>
-                    <span className="font-mont font-thin text-gray-100">
-                      Players
-                    </span>
+                  <div>
+                    <Label titulo="Players"/>
                     <div>
                       {team.players?.map((player) => (
                         <span key={player.id}>
@@ -128,8 +123,8 @@ const DataTable: React.FC = () => {
                         </span>
                       ))}
                     </div>
-                  </fieldset>
-                  <fieldset className="w-full flex flex-row gap-2 mt-8">
+                  </div>
+                  <div className="w-full flex flex-row gap-2 mt-8">
                     <button
                       className="w-full font-mont font-medium text-white border-2 bg-red-400 border-red-400 rounded-md p-1 hover:bg-red-500 hover:border-red-500 hover:text-white"
                       onClick={() => handleEditCancel()}
@@ -142,28 +137,26 @@ const DataTable: React.FC = () => {
                     >
                       Save
                     </button>
-                  </fieldset>
+                  </div>
                 </div>
               ) : (
                 <div className="flex flex-col gap-2">
                   <div className="w-full flex flex-col">
-                    <span className="font-mont font-thin text-gray-100">
-                      Team
-                    </span>
+                    <Label titulo="Team"/>
                     <span className="font-mont font-medium text-white">
                       {team.name}
                     </span>
                   </div>
                   <div className="w-full flex flex-col">
-                    <span className="font-mont text-gray-400">Stadium</span>
+                    <Label titulo="Stadium"/>
                     <span className="text-white">{team.stadium}</span>
                   </div>
                   <div className="w-full flex flex-col">
-                    <span className="font-mont text-gray-400">DT</span>
+                    <Label titulo="DT"/>
                     <span>{team.dt?.name}</span>
                   </div>
-                  <fieldset className="font-mont w-full flex flex-col">
-                    <span className="text-gray-400">Players:</span>
+                  <div className="font-mont w-full flex flex-col">
+                    <Label titulo="Players"/>
                     <ul>
                       {team.players?.map((juagador) => (
                         <li>
@@ -182,7 +175,7 @@ const DataTable: React.FC = () => {
                         </li>
                       ))}
                     </ul>
-                  </fieldset>
+                  </div>
                   <div className="w-full flex flex-row gap-2 mt-8">
                     <button
                       className="w-full font-mont font-medium text-white border-2 bg-blue-400 border-blue-400 rounded-md p-1 hover:bg-blue-500 hover:border-blue-500 hover:text-white"

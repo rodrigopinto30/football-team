@@ -2,6 +2,7 @@ import React from "react";
 import FootballSevice from "../../services";
 import { PlayerTypes } from "../../types";
 import Title from "../Title";
+import Label from "./Label";
 
 const DataTablePlayer = () => {
   const [players, setPlayers] = React.useState<PlayerTypes[]>(
@@ -78,34 +79,28 @@ const DataTablePlayer = () => {
             >
               {editingPlayerId === player.id ? (
                 <div className="flex flex-col gap-2">
-                  <fieldset className="w-full flex flex-col">
-                    <label className="font-mont font-thin text-gray-100">
-                      Player
-                    </label>
+                  <div className="w-full flex flex-col">
+                    <Label titulo="Player"/>
                     <input
                       className="p-1 rounded-md font-mont font-medium bg-gray-300 outline-none focus:bg-white"
                       type="text"
                       value={editedPlayerName}
                       onChange={(e) => setEditedPlayerName(e.target.value)}
                     />
-                  </fieldset>
+                  </div>
 
-                  <fieldset className="w-full flex flex-col">
-                    <label className="font-mont font-thin text-gray-100">
-                      Last name
-                    </label>
+                  <div className="w-full flex flex-col">
+                    <Label titulo="Last name"/>
                     <input
                       className="p-1 rounded-md font-mont font-medium bg-gray-300 outline-none focus:bg-white"
                       type="text"
                       value={editedPlayerLastname}
                       onChange={(e) => setEditedPlayerLastname(e.target.value)}
                     />
-                  </fieldset>
+                  </div>
 
-                  <fieldset className="w-full flex flex-col">
-                    <label className="font-mont font-thin text-gray-100">
-                      Number
-                    </label>
+                  <div className="w-full flex flex-col">
+                    <Label titulo="Number"/>
                     <input
                       className="p-1 rounded-md font-mont font-medium bg-gray-300 outline-none focus:bg-white"
                       type="number"
@@ -116,18 +111,16 @@ const DataTablePlayer = () => {
                         setEditedPlayerNumber(parseInt(e.target.value))
                       }
                     />
-                  </fieldset>
+                  </div>
 
-                  <fieldset className="w-full flex flex-col">
-                    <label className="font-mont font-thin text-gray-100">
-                      Position
-                    </label>
+                  <div className="w-full flex flex-col">
+                    <Label titulo="Position"/>
                     <span className="p-1 rounded-md font-mont font-medium bg-gray-300 outline-none focus:bg-white">
                       Ar
                     </span>
-                  </fieldset>
+                  </div>
 
-                  <fieldset className="w-full flex flex-row gap-2 mt-8">
+                  <div className="w-full flex flex-row gap-2 mt-8">
                     <button
                       className="w-full font-mont font-medium text-white border-2 bg-red-400 border-red-400 rounded-md p-1 hover:bg-red-500 hover:border-red-500 hover:text-white"
                       onClick={() => handleEditCancel()}
@@ -140,27 +133,27 @@ const DataTablePlayer = () => {
                     >
                       Save
                     </button>
-                  </fieldset>
+                  </div>
                 </div>
               ) : ( 
                 <div className="flex flex-col gap-2">
-                  <fieldset className="w-full flex flex-col">
-                    <label className="font-mont font-thin text-gray-100">Player:</label>
+                  <div className="w-full flex flex-col">
+                    <Label titulo="Player"/>
                     <span className="font-mont font-medium text-white">
                       {player.name}</span>
-                  </fieldset>
-                  <fieldset className="w-full flex flex-col">
-                    <label className="font-mont text-gray-400">Last name:</label>
+                  </div>
+                  <div className="w-full flex flex-col">
+                    <Label titulo="Last name"/>
                     <span className="text-white">{player.lastName}</span>
-                  </fieldset>
-                  <fieldset className="w-full flex flex-col">
-                    <label className="font-mont text-gray-400">Number:</label>
+                  </div>
+                  <div className="w-full flex flex-col">
+                    <Label titulo="Number"/>
                     <span className="text-white">{player.numbers}</span>
-                  </fieldset>
-                  <fieldset className="w-full flex flex-col">
-                    <label className="font-mont text-gray-400">Postion:</label>
+                  </div>
+                  <div className="w-full flex flex-col">
+                    <Label titulo="Position"/>
                     <span className="text-white">{player.position}</span>
-                  </fieldset>
+                  </div>
 
                   <div className="w-full flex flex-row gap-2 mt-8">
                     <button
