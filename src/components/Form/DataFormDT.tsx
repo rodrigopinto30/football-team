@@ -91,7 +91,7 @@ const DataFormDT: React.FC<Props> = ({ setDTs }) => {
               // onChange={(e)=>setNewDTPosition(e.target.value)}
             >
               {teams.map((team) => (
-                <option selected>{team.name}</option>
+                <option key={team.id} selected>{team.name}</option>
               ))}
             </select>
           )}

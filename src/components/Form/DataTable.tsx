@@ -2,6 +2,7 @@ import React from "react";
 import FootballSevice from "../../services";
 import { TeamTypes, DTTypes, PlayerTypes } from "../../types";
 import Title from "../Title";
+import Input from "./Input";
 import Label from "./Label";
 
 const DataTable: React.FC = () => {
@@ -65,17 +66,14 @@ const DataTable: React.FC = () => {
                 <div className="flex flex-col gap-2">
                   <div className="w-full flex flex-col">
                     <Label titulo="Team"/>
-                    <input
-                      className="p-1 rounded-md font-mont font-medium bg-gray-300 outline-none focus:bg-white"
+                    <Input 
+                      clases="p-1 rounded-md font-mont font-medium bg-gray-300 outline-none focus:bg-white"
                       type="text"
                       value={editedTeamName}
-                      onChange={(e) => setEditedTeamName(e.target.value)}
+                      change={(e) => setEditedTeamName(e.target.value)}
                     />
                   </div>
                   <div className="flex flex-col">
-                    <label className="font-mont font-thin text-gray-100">
-                      Does it havea stadium?
-                    </label>
                     <label
                       htmlFor="stadium-yes"
                       className="font-mont font-medium text-white"
@@ -153,7 +151,9 @@ const DataTable: React.FC = () => {
                   </div>
                   <div className="w-full flex flex-col">
                     <Label titulo="DT"/>
-                    <span>{team.dt?.name}</span>
+                    <span className="font-mont font-medium text-white">
+                      {team.dt?.name}
+                    </span>
                   </div>
                   <div className="font-mont w-full flex flex-col">
                     <Label titulo="Players"/>
