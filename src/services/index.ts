@@ -89,7 +89,7 @@ const FootballSevice ={
     },
 
     // Adding a DT
-    addDt:(name:string, lastName:string,  formation:string,team?: TeamTypes): DTTypes=>{
+    addDt:(name:string, lastName:string,  formation:string, team?: TeamTypes | null): DTTypes=>{
         const dts = FootballSevice.getDts();
         const newDt : DTTypes ={
             id: dts.length +1,

@@ -52,7 +52,7 @@ const DataTable: React.FC = () => {
       <div className="grid grid-cols-4 gap-6">
         {teams.length == 0 ? (
           <div>
-            <h4 className="font-mont font-medium text-white text-center text-md">
+            <h4 className="flex flex-row gap-1 font-mont font-medium text-white text-center text-md">
               There are not teams
             </h4>
           </div>
@@ -65,18 +65,19 @@ const DataTable: React.FC = () => {
               {editingTeamId === team.id ? (
                 <div className="flex flex-col gap-2">
                   <div className="w-full flex flex-col">
-                    <Label titulo="Team"/>
-                    <Input 
+                    <Label titulo="Team" />
+                    <Input
                       clases="p-1 rounded-md font-mont font-medium bg-gray-300 outline-none focus:bg-white"
                       type="text"
                       value={editedTeamName}
                       change={(e) => setEditedTeamName(e.target.value)}
                     />
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col w-full">
+                    <Label titulo="Does it have a stadium?" />
                     <label
                       htmlFor="stadium-yes"
-                      className="font-mont font-medium text-white"
+                      className="flex flex-row gap-1 font-mont font-medium text-white"
                     >
                       <input
                         id="stadium-yes"
@@ -90,7 +91,7 @@ const DataTable: React.FC = () => {
                     </label>
                     <label
                       htmlFor="stadium-no"
-                      className="font-mont font-medium text-white"
+                      className="flex flex-row gap-1 font-mont font-medium text-white"
                     >
                       <input
                         id="stadium-no"
@@ -105,32 +106,36 @@ const DataTable: React.FC = () => {
                   </div>
 
                   <div>
-                    <Label titulo="DT"/>
-                    <span className="font-mont font-medium text-white">
-                      {team.dt?.name}
+                    <Label titulo="DT" />
+                    <span className="flex flex-row gap-1 font-mont font-medium text-white">
+                      {team.dt == null ? <> - </> : team.dt.name}
                     </span>
                   </div>
 
                   <div>
-                    <Label titulo="Players"/>
+                    <Label titulo="Players" />
                     <div>
-                      {team.players?.map((player) => (
-                        <span key={player.id}>
-                          {player.name}
-                          <input type="checkbox" />
-                        </span>
-                      ))}
+                      {team.players == null ? (
+                        <> - </>
+                      ) : (
+                        team.players?.map((player) => (
+                          <span key={player.id}>
+                            {player.name}
+                            <input type="checkbox" />
+                          </span>
+                        ))
+                      )}
                     </div>
                   </div>
                   <div className="w-full flex flex-row gap-2 mt-8">
                     <button
-                      className="w-full font-mont font-medium text-white border-2 bg-red-400 border-red-400 rounded-md p-1 hover:bg-red-500 hover:border-red-500 hover:text-white"
+                      className="w-full flex flex-row gap-1 font-mont font-medium text-white border-2 bg-red-400 border-red-400 rounded-md p-1 hover:bg-red-500 hover:border-red-500 hover:text-white"
                       onClick={() => handleEditCancel()}
                     >
                       Cancel
                     </button>
                     <button
-                      className="w-full font-mont font-medium text-white border-2 bg-green-400 border-green-400 rounded-md p-1 hover:bg-green-500 hover:border-green-500 hover:text-white"
+                      className="w-full flex flex-row gap-1 font-mont font-medium text-white border-2 bg-green-400 border-green-400 rounded-md p-1 hover:bg-green-500 hover:border-green-500 hover:text-white"
                       onClick={() => handleEditSave(team.id)}
                     >
                       Save
@@ -140,51 +145,55 @@ const DataTable: React.FC = () => {
               ) : (
                 <div className="flex flex-col gap-2">
                   <div className="w-full flex flex-col">
-                    <Label titulo="Team"/>
-                    <span className="font-mont font-medium text-white">
+                    <Label titulo="Team" />
+                    <span className="flex flex-row gap-1 font-mont font-medium text-white">
                       {team.name}
                     </span>
                   </div>
                   <div className="w-full flex flex-col">
-                    <Label titulo="Stadium"/>
+                    <Label titulo="Stadium" />
                     <span className="text-white">{team.stadium}</span>
                   </div>
                   <div className="w-full flex flex-col">
-                    <Label titulo="DT"/>
-                    <span className="font-mont font-medium text-white">
-                      {team.dt?.name}
+                    <Label titulo="DT" />
+                    <span className="flex flex-row gap-1 font-mont font-medium text-white">
+                      {team.dt == null ? <> - </> : <>{team.dt.name + " " + team.dt.lastName}</>}
                     </span>
                   </div>
                   <div className="font-mont w-full flex flex-col">
-                    <Label titulo="Players"/>
+                    <Label titulo="Players" />
                     <ul>
-                      {team.players?.map((juagador) => (
-                        <li>
-                          <span className="font-mont text-gray-400">
-                            Name:
-                            <span className="text-white">
-                              {juagador.numbers}
+                      {team.players == null ? (
+                        <> - </>
+                      ) : (
+                        team.players.map((juagador) => (
+                          <li>
+                            <span className="font-mont text-gray-400">
+                              Name:
+                              <span className="text-white">
+                                {juagador.numbers}
+                              </span>
                             </span>
-                          </span>
-                          <span className="font-mont text-gray-400">
-                            Position:
-                            <span className="text-white">
-                              {juagador.position}
+                            <span className="font-mont text-gray-400">
+                              Position:
+                              <span className="text-white">
+                                {juagador.position}
+                              </span>
                             </span>
-                          </span>
-                        </li>
-                      ))}
+                          </li>
+                        ))
+                      )}
                     </ul>
                   </div>
                   <div className="w-full flex flex-row gap-2 mt-8">
                     <button
-                      className="w-full font-mont font-medium text-white border-2 bg-blue-400 border-blue-400 rounded-md p-1 hover:bg-blue-500 hover:border-blue-500 hover:text-white"
+                      className="w-full flex flex-row gap-1 font-mont font-medium text-white border-2 bg-blue-400 border-blue-400 rounded-md p-1 hover:bg-blue-500 hover:border-blue-500 hover:text-white"
                       onClick={() => handleEditStart(team.id, team.name)}
                     >
                       Edit
                     </button>
                     <button
-                      className="w-full font-mont font-medium text-white border-2 bg-red-400 border-red-400 rounded-md p-1 hover:bg-red-500 hover:border-red-500 hover:text-white"
+                      className="w-full flex flex-row gap-1 font-mont font-medium text-white border-2 bg-red-400 border-red-400 rounded-md p-1 hover:bg-red-500 hover:border-red-500 hover:text-white"
                       onClick={() => handleDeleteTeam(team.id)}
                     >
                       Delete

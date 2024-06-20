@@ -16,12 +16,14 @@ const DataForm: React.FC<Props> = ({ setTeams }) => {
   const [newDt, setNewDt] = useState<DTTypes | null>();
   const [changed, setChanged] = useState<boolean>(false);
   const [dts, setDts] = useState<DTTypes[]>(FootballSevice.getDts);
-  const [players, setPlayers] = useState<PlayerTypes[]>(FootballSevice.getPlayer);
+  const [players, setPlayers] = useState<PlayerTypes[]>(
+    FootballSevice.getPlayer
+  );
 
   const handleTeam = () => {
     if (newTeamName.trim() !== "") {
       const dt = dts.find((dt) => dt.id === dtId) || null;
-      let newTeam : TeamTypes;
+      let newTeam: TeamTypes;
       if (dt) {
         newTeam = FootballSevice.addTeam(newTeamName, newTeamStadium, dt);
       } else {
@@ -103,34 +105,38 @@ const DataForm: React.FC<Props> = ({ setTeams }) => {
               <option className="font-mont font-medium" defaultValue={0}>
                 -
               </option>
-              {dts.map((dt) => (
-                <option
-                  key={dt.id}
-                  className="font-mont font-medium"
-                  value={dt.id}
-                >
-                  {dt.lastName}
-                </option>
-              ))}
+              {dts.map((dt) =>
+                dt.team !== null ? (
+                  ""
+                ) : (
+                  <option
+                    key={dt.id}
+                    className="font-mont font-medium"
+                    value={dt.id}
+                  >
+                    {dt.lastName}
+                  </option>
+                )
+              )}
             </select>
           )}
         </div>
       </div>
       <div className="flex flex-col">
-        <Label titulo="Players"/>
+        <Label titulo="Players" />
         <ul>
           {players.map((player, index) => {
-            return(
+            return (
               <li key={index}>
                 <input
                   type={"checkbox"}
                   value={player.name + " " + player.lastName}
-                  disabled
+                  disabled={!player.team}
                 />
                 <label htmlFor="">{player.name + " " + player.lastName}</label>
               </li>
-            )
-            })}
+            );
+          })}
         </ul>
       </div>
       <div className="w-full mt-8">

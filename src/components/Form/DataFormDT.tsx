@@ -12,7 +12,7 @@ interface Props {
 const DataFormDT: React.FC<Props> = ({ setDTs }) => {
   const [newDtName, setNewDtName] = useState<string>("");
   const [newDtLastname, setNewDtLastname] = useState<string>("");
-  const [newDtTeam, setNewDtTeam] = useState<TeamTypes>();
+  const [newDtTeam, setNewDtTeam] = useState<TeamTypes| null>(null);
   const [newDtFormation, setNewDtFormation] = useState<string>("");
   const [changed, setChanged] = useState<boolean>(false);
   const [teams, setTeams] = useState<TeamTypes[]>(FootballSevice.getTeam);
@@ -22,7 +22,8 @@ const DataFormDT: React.FC<Props> = ({ setDTs }) => {
       const newDt = FootballSevice.addDt(
         newDtName,
         newDtLastname,
-        newDtFormation
+        newDtFormation,
+        newDtTeam,
       );
       setDTs((prevDt) => [...prevDt, newDt]);
       setNewDtName("");
@@ -90,8 +91,17 @@ const DataFormDT: React.FC<Props> = ({ setDTs }) => {
               className="p-1 rounded-md bg-gray-300 outline-none focus:bg-white"
               // onChange={(e)=>setNewDTPosition(e.target.value)}
             >
+              <option 
+                className="font-mont font-medium" 
+                defaultValue={0}
+              >
+                -
+              </option>
               {teams.map((team) => (
-                <option key={team.id} selected>{team.name}</option>
+                <option 
+                  key={team.id} 
+                  selected>{team.name}
+                  </option>
               ))}
             </select>
           )}
