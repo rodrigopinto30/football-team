@@ -100,7 +100,8 @@ const DataFormDT: React.FC<Props> = ({ setDTs }) => {
               {teams.map((team) => (
                 <option 
                   key={team.id} 
-                  selected>{team.name}
+                  defaultValue={team.name}
+                  >{team.name}
                   </option>
               ))}
             </select>
@@ -110,7 +111,7 @@ const DataFormDT: React.FC<Props> = ({ setDTs }) => {
 
       <div className="w-full mt-8">
         <Button
-          title="Add team"
+          title="Add DT"
           clases="p-1 font-mont font-medium text-white bg-green-500 rounded-md hover:bg-green-600"
           onclick={handleDt}
         />

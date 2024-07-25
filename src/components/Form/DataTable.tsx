@@ -162,9 +162,9 @@ const DataTable: React.FC = () => {
                   </div>
                   <div className="font-mont w-full flex flex-col">
                     <Label titulo="Players" />
-                    <ul>
+                    <ul onClick={()=>console.log(team.players)}>
                       {team.players == null ? (
-                        <> - </>
+                        <span className="text-white"> - </span>
                       ) : (
                         team.players.map((juagador) => (
                           <li>

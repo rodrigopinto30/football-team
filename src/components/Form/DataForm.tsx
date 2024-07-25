@@ -14,6 +14,7 @@ const DataForm: React.FC<Props> = ({ setTeams }) => {
   const [newTeamStadium, setNewTeamStadium] = useState<string>("yes");
   const [dtId, setDtId] = useState<number>(0);
   const [newDt, setNewDt] = useState<DTTypes | null>();
+  const [newPlayer, setNewPlayer] = useState<PlayerTypes[] | null>();
   const [changed, setChanged] = useState<boolean>(false);
   const [dts, setDts] = useState<DTTypes[]>(FootballSevice.getDts);
   const [players, setPlayers] = useState<PlayerTypes[]>(
@@ -36,6 +37,18 @@ const DataForm: React.FC<Props> = ({ setTeams }) => {
       alert("Debes ingresar el nombre de un equipo");
     }
   };
+
+  const [idsplayer, setidsplayer] = useState<number[]>([]);
+
+  const handlePlayerSelected=(player:PlayerTypes)=>{
+    console.log(player.id)
+    if(idsplayer.includes(player.id)){
+      setidsplayer((previd)=> previd.filter((id) => id !== player.id))
+    }else{
+      setidsplayer((previd) => [...previd, player.id]);
+    }
+    console.log(idsplayer)
+  }
 
   React.useEffect(() => {
     if (changed) {
@@ -127,13 +140,18 @@ const DataForm: React.FC<Props> = ({ setTeams }) => {
         <ul>
           {players.map((player, index) => {
             return (
-              <li key={index}>
+              <li
+                className="text-white" 
+                key={index}>
                 <input
                   type={"checkbox"}
                   value={player.name + " " + player.lastName}
-                  disabled={!player.team}
+                  disabled={true}
+                  onClick={()=>handlePlayerSelected(player)}
                 />
-                <label htmlFor="">{player.name + " " + player.lastName}</label>
+                <label htmlFor="">
+                  {player.name + " " + player.lastName}
+                </label>
               </li>
             );
           })}

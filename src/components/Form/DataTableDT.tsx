@@ -95,7 +95,7 @@ const DataTableDT = () => {
                       className="p-1 rounded-md bg-gray-300 outline-none focus:bg-white"
                       // onChange={(e)=>setNewDTPosition(e.target.value)}
                     >
-                      <option selected>Manchester</option>
+                      <option defaultValue="Manchester">Manchester</option>
                       <option>Boca</option>
                       <option>Real Madrid</option>
                       <option>Flamengo</option>

@@ -87,7 +87,7 @@ const DataFormPlayer: React.FC<Props> = ({ setPlayers }) => {
             className="p-1 rounded-md bg-gray-300 outline-none focus:bg-white"
             onChange={(e) => setNewPlayerPosition(e.target.value)}
           >
-            <option selected>Arquero</option>
+            <option defaultValue="Arquero">Arquero</option>
             <option>Defensor</option>
             <option>Mediocampista</option>
             <option>Delantero</option>
@@ -97,7 +97,7 @@ const DataFormPlayer: React.FC<Props> = ({ setPlayers }) => {
 
       <div className="w-full mt-8">
         <Button
-          title="Add team"
+          title="Add player"
           clases="p-1 font-mont font-medium text-white bg-green-500 rounded-md hover:bg-green-600"
           onclick={handlePlayer}
         />
